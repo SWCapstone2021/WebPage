@@ -43,9 +43,9 @@
 
 ## Contributor
 
-Maintainer : 김수연
+Maintainer : 강한결
 
-Contributor : 강한결, 남희수, 오승민, 허범수
+Contributor : 김수연, 남희수, 오승민, 허범수
 
 
 
