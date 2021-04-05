@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <hankyul-button></hankyul-button>
+        <hankyul-local-button></hankyul-local-button>
+    </div>
+
+    <script>
+        Vue.component('hello-world', {
+            template: '<div>hello world</div>'
+        });
+
+        Vue.component('hankyul-button', {
+            template: `
+            <div>
+                {{ name }}
+                <button @click="changeText">Click</button>
+                <hello-world></hello-world>
+                <hr>
+            </div>
+            `,
+            data() {
+                return {
+                    name: "hankyul"
+                }
+            },
+            methods: {
+                changeText() {
+                    this.name = "hankyul update"
+                }
+            }
+        });
+
+        const hankyulButton = {
+            template: `
+            <div>
+                {{ name }}
+                <button @click="changeText">Click</button>
+                <hello-world></hello-world>
+                <hr>
+            </div>
+            `,
+            data() {
+                return {
+                    name: "hankyul"
+                }
+            },
+            methods: {
+                changeText() {
+                    this.name = "hankyul update"
+                }
+            }
+        };
+
+        var app = new Vue({
+            el: "#app",
+            components: {
+                'hankyul-local-button': hankyulButton
+            },
+            data: {
+                name: "hankyul2"
+            },
+            methods: {
+                changeText() {
+                    this.name = "hankyul2 updated"
+                }
+            }
+        });
+    </script>
+</body>
+
+
+
+</html>
