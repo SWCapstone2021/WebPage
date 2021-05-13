@@ -119,13 +119,32 @@ export default {
       'mdi-instagram',
     ],
     selectedItem: 0,
-    menuItems: [
-      { text: 'Home', icon: 'mdi-home', to: '/' },
-      { text: 'Download', icon: 'mdi-download', to: '/download' },
-      { text: 'Plan', icon: 'mdi-professional-hexagon', to: '/Plan' },
-      { text: 'Sign Up', icon: 'mdi-face', to: '/SignUp' },
-      { text: 'Sign In', icon: 'mdi-login', to: '/SignIn' },
-    ],
   }),
+  computed: {
+    user() {
+      return this.$store.state.user
+    },
+    userIsAuthenticated() {
+      return this.user !== null && this.user !== undefined
+    },
+    menuItems() {
+      let menuItems = [
+        { text: 'Home', icon: 'mdi-home', to: '/' },
+        { text: 'Download', icon: 'mdi-download', to: '/download' },
+        { text: 'Plan', icon: 'mdi-professional-hexagon', to: '/Plan' },
+        { text: 'Sign Up', icon: 'mdi-face', to: '/auth/signup' },
+        { text: 'Log In', icon: 'mdi-login', to: '/auth/login' },
+      ]
+      if (this.userIsAuthenticated) {
+        menuItems = [
+          { text: 'Home', icon: 'mdi-home', to: '/' },
+          { text: 'Download', icon: 'mdi-download', to: '/download' },
+          { text: 'Plan', icon: 'mdi-professional-hexagon', to: '/Plan' },
+          { text: 'Sign Out', icon: 'mdi-logout', to: '/auth/signout' },
+        ]
+      }
+      return menuItems
+    },
+  },
 }
 </script>

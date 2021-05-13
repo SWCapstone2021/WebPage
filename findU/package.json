@@ -29,6 +29,7 @@
     "core-js": "^3.9.1",
     "dotenv": "^9.0.1",
     "firebase": "^8.5.0",
+    "firebaseui": "^4.8.0",
     "nuxt": "^2.15.3",
     "vuetify-dialog": "^2.0.14"
   },
