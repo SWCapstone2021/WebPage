@@ -39,11 +39,11 @@ export default {
           dark: false,
           themes: {
             light: {
-              primary: '#283593',
-              secondary: '#938728',
+              primary: '#3d98c0',
+              secondary: '#90CAF9',
               accent: '#286a93',
               error: '#932834',
-              surface: '#512893',
+              surface: '#E0F7FA',
               background: '#FFFFFF',
             },
             dark: {
@@ -119,6 +119,6 @@ export default {
   },
 
   router: {
-    middleware: 'auth',
+    middleware: ['auth'],
   },
 }

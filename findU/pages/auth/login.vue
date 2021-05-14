@@ -1,12 +1,9 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="12" sm="6">
-        <v-card>
-          <v-card-title> Login to FindU </v-card-title>
-          <v-card-subtitle>
-            This will send login link to your email
-          </v-card-subtitle>
+      <v-col cols="12" sm="8" md="6" lg="4">
+        <v-card class="text-center">
+          <v-card-text class="text-h6 black--text"> Log in </v-card-text>
           <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-container>
@@ -16,17 +13,23 @@
                       v-model="email"
                       :rules="emailRules"
                       label="E-mail"
+                      prepend-inner-icon="mdi-email"
                       append-outer-icon="mdi-check"
                       clearable
                       required
+                      outlined
                       @click:append-outer="validate"
                       @keydown.enter.prevent="validate"
                     ></v-text-field>
                   </v-col>
                 </v-row>
                 <v-row>
-                  <v-col md="12" class="d-flex justify-center">
-                    <v-btn :disabled="!valid" color="success" @click="sendEmail"
+                  <v-col cols="12" class="d-flex justify-center">
+                    <v-btn
+                      block
+                      :disabled="!valid"
+                      color="secondary"
+                      @click="sendEmail"
                       >Send Login Link</v-btn
                     >
                   </v-col>
@@ -37,13 +40,28 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row justify="center">
+      <v-col cols="12" sm="8" md="6" lg="4" class="d-flex justify-center">
+        <v-btn
+          class="text-none text-body-2 black--text"
+          outlined
+          text
+          elevation="0"
+          width="100%"
+          to="/auth/signup"
+        >
+          Don't have a FindU account yet?
+          <span class="text-none secondary--text"> Sign up </span>
+        </v-btn>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
 export default {
   name: 'Login',
-  layout: 'SampleLayout',
+  layout: 'AuthLayout',
   data() {
     return {
       valid: false,
@@ -61,6 +79,7 @@ export default {
         // URL you want to redirect back to. The domain (www.example.com) for this
         // URL must be in the authorized domains list in the Firebase Console.
         url: 'http://localhost:3000/auth/redirect',
+        // url: 'https://apcfindu.web.app/auth/redirect',
         // This must be true.
         handleCodeInApp: true,
         dynamicLinkDomain: 'apcfindu.page.link',
@@ -68,6 +87,9 @@ export default {
     }
   },
   mounted() {
+    if (this.$store.state.user) {
+      this.$router.push('/')
+    }
     this.resetValidation()
   },
   methods: {

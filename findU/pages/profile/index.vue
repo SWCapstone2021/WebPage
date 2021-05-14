@@ -5,6 +5,6 @@
 <script>
 export default {
   name: 'Index',
-  layout: 'SampleLayout',
+  layout: 'DashboardLayout',
 }
 </script>

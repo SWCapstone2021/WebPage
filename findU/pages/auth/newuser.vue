@@ -1,15 +1,12 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
+    <v-row justify="center">
+      <v-col cols="12" sm="10" md="8" lg="6">
         <v-container>
-          <v-row justify="center">
-            <v-col cols="12" sm="10" md="8" lg="6">
-              <v-card ref="form">
-                <v-card-title> SignUp to FindU </v-card-title>
-                <v-card-subtitle>
-                  agreeing to our policy and type your info
-                </v-card-subtitle>
+          <v-row>
+            <v-col>
+              <v-card ref="form" class="text-center">
+                <v-card-text class="text-h6"> Create Account </v-card-text>
                 <v-card-text>
                   <v-text-field
                     ref="name"
@@ -18,6 +15,7 @@
                     :error-messages="errorMessages"
                     label="Full Name"
                     placeholder="Hong Gil Dong"
+                    clearable
                     required
                   ></v-text-field>
                 </v-card-text>
@@ -55,7 +53,7 @@
 <script>
 export default {
   name: 'Newuser',
-  layout: 'SampleLayout',
+  layout: 'AuthLayout',
   data() {
     return {
       name: null,
@@ -73,6 +71,11 @@ export default {
     name() {
       this.errorMessages = ''
     },
+  },
+  mounted() {
+    if (this.$store.state.user) {
+      this.$router.push('/')
+    }
   },
   methods: {
     resetForm() {
@@ -95,13 +98,17 @@ export default {
       if (!this.formHasErrors) {
         const user = this.$fire.auth.currentUser
         const prevThis = this
+        console.log(prevThis.name)
         user
           .updateProfile({
-            displayName: this.name,
+            displayName: prevThis.name,
             photoURL: 'https://example.com/jane-q-user/profile.jpg',
           })
           .then(function () {
             // Update successful.
+            prevThis.$store.commit('UPDATE_USER_INFO', {
+              displayName: prevThis.name,
+            })
             prevThis.$router.push('/')
           })
           .catch(function (error) {

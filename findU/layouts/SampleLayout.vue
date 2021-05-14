@@ -33,7 +33,7 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app class="background">
+    <v-app-bar app flat absolute class="background">
       <v-app-bar-nav-icon
         class="d-sm-none"
         @click="sideNav = !sideNav"
@@ -69,7 +69,7 @@
       </v-toolbar-items>
     </v-app-bar>
     <v-main>
-      <v-container>
+      <v-container fluid class="ma-0 pa-0">
         <nuxt />
       </v-container>
     </v-main>
@@ -119,6 +119,12 @@ export default {
       'mdi-instagram',
     ],
     selectedItem: 0,
+    items: [
+      { title: 'Click Me' },
+      { title: 'Click Me' },
+      { title: 'Click Me' },
+      { title: 'Click Me 2' },
+    ],
   }),
   computed: {
     user() {
@@ -140,6 +146,7 @@ export default {
           { text: 'Home', icon: 'mdi-home', to: '/' },
           { text: 'Download', icon: 'mdi-download', to: '/download' },
           { text: 'Plan', icon: 'mdi-professional-hexagon', to: '/Plan' },
+          { text: 'Profile', icon: 'mdi-account', to: '/profile' },
           { text: 'Sign Out', icon: 'mdi-logout', to: '/auth/signout' },
         ]
       }

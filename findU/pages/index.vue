@@ -1,10 +1,9 @@
 <template>
-  <v-container>
-    <v-row v-for="n in 2" :key="n" :class="n === 1 ? 'mb-6' : ''" no-gutters>
-      <v-col v-for="k in n + 1" :key="k">
-        <v-btn large to="/Download">Download</v-btn>
-      </v-col>
-    </v-row>
+  <v-container fluid class="ma-0 pa-0">
+    <Fragment1></Fragment1>
+    <Fragment2></Fragment2>
+    <Fragment3></Fragment3>
+    <Fragment4></Fragment4>
   </v-container>
 </template>
 
@@ -13,10 +12,7 @@ export default {
   name: 'Index',
   layout: 'SampleLayout',
   data() {
-    return {
-      justify: ['start', 'center', 'end', 'space-around', 'space-between'],
-      alignments: ['start', 'center', 'end'],
-    }
+    return {}
   },
 }
 </script>

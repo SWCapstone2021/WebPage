@@ -12,9 +12,12 @@
 
 <script>
 export default {
-  layout: 'SampleLayout',
-  name: 'redirect',
+  name: 'Redirect',
+  layout: 'AuthLayout',
   mounted() {
+    if (this.$store.state.user) {
+      this.$router.push('/')
+    }
     // Confirm the link is a sign-in with email link.
     if (this.$fire.auth.isSignInWithEmailLink(window.location.href)) {
       // Additional state parameters can also be passed via URL.
