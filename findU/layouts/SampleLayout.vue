@@ -74,12 +74,7 @@
       </v-container>
     </v-main>
     <v-footer dark padless absolute app>
-      <v-card
-        flat
-        tile
-        width="100%"
-        class="primary lighten-1 white--text text-center"
-      >
+      <v-card flat tile width="100%" class="primary white--text text-center">
         <v-card-text>
           <v-btn
             v-for="icon in footerItems"
@@ -136,17 +131,13 @@ export default {
     menuItems() {
       let menuItems = [
         { text: 'Home', icon: 'mdi-home', to: '/' },
-        { text: 'Download', icon: 'mdi-download', to: '/download' },
-        { text: 'Plan', icon: 'mdi-professional-hexagon', to: '/Plan' },
         { text: 'Sign Up', icon: 'mdi-face', to: '/auth/signup' },
         { text: 'Log In', icon: 'mdi-login', to: '/auth/login' },
       ]
       if (this.userIsAuthenticated) {
         menuItems = [
           { text: 'Home', icon: 'mdi-home', to: '/' },
-          { text: 'Download', icon: 'mdi-download', to: '/download' },
-          { text: 'Plan', icon: 'mdi-professional-hexagon', to: '/Plan' },
-          { text: 'Profile', icon: 'mdi-account', to: '/profile' },
+          { text: 'Profile', icon: 'mdi-account', to: '/profile/account' },
           { text: 'Sign Out', icon: 'mdi-logout', to: '/auth/signout' },
         ]
       }

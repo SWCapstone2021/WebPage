@@ -1,102 +1,61 @@
 <template>
-  <v-container fluid>
-    <v-row>
-      <v-col cols="12">
-        <v-img
-          :src="require('@/assets/logo-com.svg')"
-          class="mx-auto mb-8"
-          max-width="128"
-        />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-container>
-        <v-row align="center" justify="center">
-          <v-col cols="12" md="7">
-            <v-simple-table>
-              <thead>
-                <tr>
-                  <th />
-                  <th class="text-body-1 font-weight-bold text-center">
-                    What's in the Demo?
-                  </th>
-                  <th class="text-body-1 font-weight-bold text-center">
-                    What's in the PRO version?
-                  </th>
-                </tr>
-              </thead>
+  <base-section id="theme-features">
+    <base-section-heading title="FindU Features">
+      FindU give user a powerful functionalities saving users time and giving
+      valuable informations. These below features show key features of our
+      product.
+    </base-section-heading>
 
-              <tbody class="text-body-1">
-                <tr v-for="([name, one, two], i) in features" :key="i">
-                  <td v-text="name" />
-
-                  <td class="text-center font-weight-bold">
-                    <template v-if="typeof one === 'boolean'">
-                      <v-icon :color="one ? 'success' : 'error'">
-                        mdi-{{ one ? 'check' : 'close' }}
-                      </v-icon>
-                    </template>
-
-                    <template v-else>
-                      {{ one }}
-                    </template>
-                  </td>
-
-                  <td class="text-center font-weight-bold">
-                    <template v-if="typeof two === 'boolean'">
-                      <v-icon :color="two ? 'success' : 'error'">
-                        mdi-{{ two ? 'check' : 'close' }}
-                      </v-icon>
-                    </template>
-
-                    <template v-else>
-                      {{ two }}
-                    </template>
-                  </td>
-                </tr>
-              </tbody>
-            </v-simple-table>
-          </v-col>
-
-          <v-col cols="12" md="5">
-            <v-card elevation="16" class="mb-12">
-              <base-img
-                max-width="100%"
-                src="https://cdn.vuetifyjs.com/store/themes/zero/pro.png"
-              />
-            </v-card>
-
-            <div class="text-center">
-              <base-btn
-                :tile="false"
-                color="primary"
-                href="https://store.vuetifyjs.com/products/zero-theme-pro/?ref=vtyd-pro-page-features"
-                rounded
-              >
-                Buy Pro Now
-
-                <v-icon right> mdi-rocket </v-icon>
-              </base-btn>
-            </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-row>
-  </v-container>
+    <v-container>
+      <v-row>
+        <v-col v-for="(feature, i) in features" :key="i" cols="12" md="6">
+          <base-avatar-card v-bind="feature" align="left" horizontal>
+            {{ feature.text }}
+          </base-avatar-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </base-section>
 </template>
 
 <script>
 export default {
-  name: 'Fragment3',
+  name: 'SectionThemeFeatures',
+
   data: () => ({
     features: [
-      ['Components', 5, '40+'],
-      ['Example Pages', 3, '10+'],
-      ['Vue CLI Support', true, true],
-      ['Bugfixes and Issues', false, true],
-      ['6 Months Free Updates', false, true],
-      ['Supports Vuetify', false, true],
-      ['Price', 'Free', '$59'],
+      {
+        title: 'Generate Accurate SubText',
+        icon: 'mdi-fountain-pen-tip',
+        text: "Our STT model' is trained on AI HUB Data. This model can make so high quality subtext that user can have good experience.",
+      },
+      {
+        title: 'Calculate Keyword Based Reliability',
+        icon: 'mdi-calculator-variant-outline',
+        text: 'To give reliability per video during searching youtube, we calculate how many keywords are appear on subtext',
+      },
+      {
+        color: 'secondary',
+        dark: true,
+        title: 'Summarize Video',
+        icon: 'mdi-lightbulb-on-outline',
+        text: "You don't need to watch too long video all day, just read the core concept of video made by our summarization model",
+      },
+      {
+        title: 'Search Video Like Reading Text',
+        icon: 'mdi-clipboard-text-search-outline',
+        text: 'There are many occurrence where you only interested in specific information of video. In this case, you can search video like you do in text document',
+      },
+      {
+        title: 'Personalize Feature',
+        icon: 'mdi-account',
+        text: 'Plenty of Features are ready to use. Just pick your favorite options',
+      },
+      {
+        title: 'Visualize Result',
+        icon: 'mdi-play-box-outline',
+        text: "Isn't it too difficult to get used to new tool? Our tools give straightforward Searching Result and is designed with easy-to-use UI",
+      },
     ],
   }),
 }

@@ -4,6 +4,7 @@
     <Fragment2></Fragment2>
     <Fragment3></Fragment3>
     <Fragment4></Fragment4>
+    <Fragment5></Fragment5>
   </v-container>
 </template>
 

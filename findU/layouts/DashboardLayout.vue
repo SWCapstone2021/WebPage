@@ -1,24 +1,21 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="sideNav" fixed class="d-sm-none">
+    <v-navigation-drawer v-model="sideNav" absolute temporary app>
       <v-list>
-        <v-list-item>
+        <v-list-item class="px-2">
           <v-list-item-avatar>
-            <v-img :src="require('@/assets/logo.svg')"></v-img>
+            <v-avatar color="primary" class="text-uppercase">{{
+              userNameCap
+            }}</v-avatar>
           </v-list-item-avatar>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-content>
-            <v-list-item-title class="title">FIND U</v-list-item-title>
-            <v-list-item-subtitle>Find You Point</v-list-item-subtitle>
-          </v-list-item-content>
+          <v-list-item-title>{{ userName }}</v-list-item-title>
         </v-list-item>
       </v-list>
       <v-divider></v-divider>
       <v-list nav dense>
         <v-list-item-group v-model="selectedItem" color="primary">
           <v-list-item
-            v-for="(item, i) in menuItems"
+            v-for="(item, i) in navItems"
             :key="i"
             :to="item.to"
             nuxt
@@ -33,29 +30,18 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app class="background">
-      <v-app-bar-nav-icon
-        class="d-sm-none"
-        @click="sideNav = !sideNav"
-      ></v-app-bar-nav-icon>
-      <v-toolbar-title>
-        <NuxtLink to="/" class="d-flex">
-          <v-img
-            left
-            :src="require('@/assets/logo.svg')"
-            contain
-            width="100%"
-            max-width="46"
-          ></v-img>
-          <v-img
-            left
-            :src="require('@/assets/logo-name.svg')"
-            contain
-            width="100%"
-            max-width="96"
-          ></v-img>
-        </NuxtLink>
-      </v-toolbar-title>
+    <v-app-bar flat absolute app class="primary" height="40">
+      <v-app-bar-nav-icon @click="sideNav = !sideNav"></v-app-bar-nav-icon>
+      <nuxt-link to="/profile/account">
+        <span
+          class="
+            text-decoration-none text-h6
+            background--text
+            font-weight-medium
+          "
+          >FINDU</span
+        >
+      </nuxt-link>
       <v-spacer></v-spacer>
       <v-toolbar-items
         v-for="(item, i) in menuItems"
@@ -63,53 +49,21 @@
         class="d-none d-sm-inline"
       >
         <v-btn text :to="item.to" nuxt>
-          <v-icon color="primary" left>{{ item.icon }}</v-icon>
-          {{ item.text }}
+          <v-icon color="background">{{ item.icon }}</v-icon>
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>
     <v-main>
-      <v-container>
+      <v-container fluid>
         <nuxt />
       </v-container>
     </v-main>
-    <v-footer dark padless absolute app>
-      <v-card
-        flat
-        tile
-        width="100%"
-        class="primary lighten-1 white--text text-center"
-      >
-        <v-card-text>
-          <v-btn
-            v-for="icon in footerItems"
-            :key="icon"
-            class="mx-4 white--text"
-            icon
-          >
-            <v-icon size="24px">
-              {{ icon }}
-            </v-icon>
-          </v-btn>
-        </v-card-text>
-
-        <v-card-text class="white--text pt-0">
-          This is made by APC for class of 2021 Spring AJOU SW CAPSTONE
-        </v-card-text>
-
-        <v-divider></v-divider>
-
-        <v-card-text class="white--text">
-          {{ new Date().getFullYear() }} — <strong>APC</strong>
-        </v-card-text>
-      </v-card>
-    </v-footer>
   </v-app>
 </template>
 
 <script>
 export default {
-  name: 'DashboardLayout',
+  name: 'SampleLayout',
   data: () => ({
     sideNav: false,
     footerItems: [
@@ -125,31 +79,44 @@ export default {
       { title: 'Click Me' },
       { title: 'Click Me 2' },
     ],
+    navItems: [
+      { text: 'Account', icon: 'mdi-account', to: '/profile/account' },
+      {
+        text: 'FindU Subscribe',
+        icon: 'mdi-youtube-subscription',
+        to: '/profile/subscribe',
+      },
+      {
+        text: 'FindU Billing',
+        icon: 'mdi-credit-card',
+        to: '/profile/billing',
+      },
+      { text: 'Home', icon: 'mdi-home', to: '/' },
+      { text: 'Sign Out', icon: 'mdi-logout', to: '/auth/signout' },
+    ],
   }),
   computed: {
     user() {
       return this.$store.state.user
     },
+    userNameCap() {
+      if (this.userIsAuthenticated) {
+        return this.user.displayName[0]
+      } else {
+        return 'A'
+      }
+    },
+    userName() {
+      return this.userIsAuthenticated ? this.user.displayName : 'APC'
+    },
     userIsAuthenticated() {
       return this.user !== null && this.user !== undefined
     },
     menuItems() {
-      let menuItems = [
+      const menuItems = [
         { text: 'Home', icon: 'mdi-home', to: '/' },
-        { text: 'Download', icon: 'mdi-download', to: '/download' },
-        { text: 'Plan', icon: 'mdi-professional-hexagon', to: '/Plan' },
-        { text: 'Sign Up', icon: 'mdi-face', to: '/auth/signup' },
-        { text: 'Log In', icon: 'mdi-login', to: '/auth/login' },
+        { text: 'Sign Out', icon: 'mdi-logout', to: '/auth/signout' },
       ]
-      if (this.userIsAuthenticated) {
-        menuItems = [
-          { text: 'Home', icon: 'mdi-home', to: '/' },
-          { text: 'Download', icon: 'mdi-download', to: '/download' },
-          { text: 'Plan', icon: 'mdi-professional-hexagon', to: '/Plan' },
-          { text: 'Profile', icon: 'mdi-account', to: '/profile' },
-          { text: 'Sign Out', icon: 'mdi-logout', to: '/auth/signout' },
-        ]
-      }
       return menuItems
     },
   },
