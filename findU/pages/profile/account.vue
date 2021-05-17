@@ -42,7 +42,49 @@
                 <v-card-text class="black--text"
                   >I agree with policy</v-card-text
                 >
-                <v-btn class="red" dark width="150">Check policy</v-btn>
+
+                <div class="text-center">
+                  <v-dialog v-model="dialog1" width="500">
+                    <template #activator="{ on, attrs }">
+                      <v-btn
+                        class="red"
+                        dark
+                        width="150"
+                        v-bind="attrs"
+                        v-on="on"
+                      >
+                        Check policy
+                      </v-btn>
+                    </template>
+
+                    <v-card>
+                      <v-card-title class="headline grey lighten-2">
+                        Privacy Policy
+                      </v-card-title>
+
+                      <v-card-text>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit
+                        anim id est laborum.
+                      </v-card-text>
+
+                      <v-divider></v-divider>
+
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="primary" text @click="dialog1 = false">
+                          I accept
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+                </div>
               </v-card>
             </v-col>
           </v-row>
@@ -55,7 +97,45 @@
                 style="border-color: red"
               >
                 <v-card-text class="black--text">Delete my account</v-card-text>
-                <v-btn class="red" dark width="150">Delete account</v-btn>
+
+                <div class="text-center">
+                  <v-dialog v-model="dialog2" width="500">
+                    <template #activator="{ on, attrs }">
+                      <v-btn
+                        class="red"
+                        dark
+                        width="150"
+                        v-bind="attrs"
+                        v-on="on"
+                      >
+                        Delete account
+                      </v-btn>
+                    </template>
+
+                    <v-card>
+                      <v-card-title class="headline grey lighten-2">
+                        Delete Account
+                      </v-card-title>
+
+                      <v-card-text>
+                        This action cannot be undo. Do you really want to delete
+                        user?
+                      </v-card-text>
+
+                      <v-divider></v-divider>
+
+                      <v-card-actions>
+                        <v-btn color="primary" text @click="dialog2 = false"
+                          >Cancel
+                        </v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn color="primary" text @click="deleteUser"
+                          >I want to Delete
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+                </div>
               </v-card>
             </v-col>
           </v-row>
@@ -73,6 +153,8 @@ export default {
   layout: 'DashboardLayout',
   data() {
     return {
+      dialog1: false,
+      dialog2: false,
       userMembership: 'Free',
     }
   },
@@ -112,6 +194,20 @@ export default {
         })
         .catch((error) => {
           console.log('Error getting document:', error)
+        })
+    },
+    deleteUser() {
+      this.dialog2 = false
+      const user = this.$fire.auth.currentUser
+      const prevThis = this
+      user
+        .delete()
+        .then(function () {
+          prevThis.$router.push('/')
+        })
+        .catch(function (error) {
+          // An error happened.
+          console.log(error)
         })
     },
   },
