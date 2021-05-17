@@ -87,6 +87,7 @@ export default {
     }
   },
   mounted() {
+    console.log('login entered')
     if (this.$store.state.user) {
       this.$router.push('/')
     }

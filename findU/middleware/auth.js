@@ -31,11 +31,10 @@ export default function ({ store, redirect, route }) {
       console.log('hello')
       if (accessAuth(route)) {
         if (!accessSignOut(route)) {
+          console.log('redirect to / from auth.js')
           return redirect('/')
         }
       }
-    } else {
-      return redirect('/auth/newuser')
     }
   }
   // } else if (accessProfile(route)) {

@@ -31,6 +31,7 @@
     "firebase": "^8.5.0",
     "firebaseui": "^4.8.0",
     "nuxt": "^2.15.3",
+    "raw-loader": "^4.0.2",
     "vuetify-dialog": "^2.0.14"
   },
   "devDependencies": {

@@ -13,9 +13,11 @@
                       v-model="email"
                       :rules="emailRules"
                       label="E-mail"
+                      prepend-inner-icon="mdi-email"
                       append-outer-icon="mdi-check"
                       clearable
                       required
+                      outlined
                       @click:append-outer="validate"
                       @keydown.enter.prevent="validate"
                     ></v-text-field>
@@ -114,9 +116,10 @@ export default {
     async openDialog() {
       // eslint-disable-next-line no-unused-vars
       const res = await this.$dialog.confirm({
-        text: 'This is FindU Contract',
+        text: 'Do you agree with This Contract?',
         title: 'Find U Policy Statement',
       })
+      this.checkbox = res
     },
     validate() {
       this.checkEmail()
