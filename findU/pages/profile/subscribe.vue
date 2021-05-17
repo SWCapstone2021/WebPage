@@ -8,60 +8,70 @@
           <v-container>
             <v-row>
               <v-col cols="12" md="6">
-                <v-card class="mx-auto">
-                  <v-img
-                    :src="require('@/assets/free.jpg')"
-                    height="200px"
-                  ></v-img>
-                  <v-card-title>Free</v-card-title>
-                  <v-card-subtitle> 0$ per month </v-card-subtitle>
-                  <v-card-text>
-                    <div
-                      v-for="(item, idx) in memberFree"
-                      :key="idx"
-                      class="d-flex align-center"
-                    >
-                      <v-icon :color="item.can ? 'success' : 'error'">
-                        mdi-{{ item.can ? 'check' : 'close' }}
-                      </v-icon>
-                      <span>{{ item.description }}</span>
-                    </div>
-                  </v-card-text>
-                  <v-spacer></v-spacer>
-                </v-card>
+                <v-hover v-slot="{ hover }">
+                  <v-card
+                    :elevation="hover ? 12 : 2"
+                    :class="{ 'on-hover': hover }"
+                    class="mx-auto"
+                  >
+                    <v-img :src="require('@/assets/free.jpg')" height="200px">
+                    </v-img>
+                    <v-card-title>Free</v-card-title>
+                    <v-card-subtitle> 0$ per month </v-card-subtitle>
+                    <v-card-text>
+                      <div
+                        v-for="(item, idx) in memberFree"
+                        :key="idx"
+                        class="d-flex align-center"
+                      >
+                        <v-icon :color="item.can ? 'success' : 'error'">
+                          mdi-{{ item.can ? 'check' : 'close' }}
+                        </v-icon>
+                        <span>{{ item.description }}</span>
+                      </div>
+                    </v-card-text>
+                    <v-spacer></v-spacer>
+                  </v-card>
+                </v-hover>
               </v-col>
               <v-col cols="12" md="6">
-                <v-card class="mx-auto">
-                  <v-img
-                    :src="require('@/assets/preminum.jpg')"
-                    height="200px"
-                  ></v-img>
-                  <v-card-title>Pro</v-card-title>
-                  <v-card-subtitle> 1$ per month </v-card-subtitle>
-                  <v-card-text>
-                    <div
-                      v-for="(item, idx) in memberPro"
-                      :key="idx"
-                      class="d-flex align-center"
-                    >
-                      <v-icon :color="item.can ? 'success' : 'error'">
-                        mdi-{{ item.can ? 'check' : 'close' }}
-                      </v-icon>
-                      <span>{{ item.description }}</span>
-                    </div>
-                  </v-card-text>
-                  <v-spacer></v-spacer>
-                  <v-card-actions>
-                    <v-btn
-                      :disabled="userMembership"
-                      text
-                      color="teal accent-4"
-                      @click="upgradeToPro"
-                    >
-                      {{ proBTN }}
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
+                <v-hover v-slot="{ hover }">
+                  <v-card
+                    :elevation="hover ? 12 : 2"
+                    :class="{ 'on-hover': hover }"
+                    class="mx-auto"
+                  >
+                    <v-img
+                      :src="require('@/assets/preminum.jpg')"
+                      height="200px"
+                    ></v-img>
+                    <v-card-title>Pro</v-card-title>
+                    <v-card-subtitle> 1$ per month </v-card-subtitle>
+                    <v-card-text>
+                      <div
+                        v-for="(item, idx) in memberPro"
+                        :key="idx"
+                        class="d-flex align-center"
+                      >
+                        <v-icon :color="item.can ? 'success' : 'error'">
+                          mdi-{{ item.can ? 'check' : 'close' }}
+                        </v-icon>
+                        <span>{{ item.description }}</span>
+                      </div>
+                    </v-card-text>
+                    <v-spacer></v-spacer>
+                    <v-card-actions>
+                      <v-btn
+                        :disabled="userMembership"
+                        text
+                        color="teal accent-4"
+                        @click="upgradeToPro"
+                      >
+                        {{ proBTN }}
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-hover>
               </v-col>
             </v-row>
           </v-container>
@@ -142,3 +152,13 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.v-card {
+  transition: opacity 0.4s ease-in-out;
+}
+
+.v-card:not(.on-hover) {
+  opacity: 0.6;
+}
+</style>
