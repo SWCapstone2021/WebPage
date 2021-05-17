@@ -26,14 +26,8 @@
                       </v-icon>
                       <span>{{ item.description }}</span>
                     </div>
-                    <div>0 per month</div>
                   </v-card-text>
                   <v-spacer></v-spacer>
-                  <v-card-actions>
-                    <v-btn text color="teal accent-4" @click="updateToFree">
-                      Change to this
-                    </v-btn>
-                  </v-card-actions>
                 </v-card>
               </v-col>
               <v-col cols="12" md="6">
@@ -58,8 +52,13 @@
                   </v-card-text>
                   <v-spacer></v-spacer>
                   <v-card-actions>
-                    <v-btn text color="teal accent-4" @click="upgradeToPro">
-                      upgrade to pro
+                    <v-btn
+                      :disabled="userMembership"
+                      text
+                      color="teal accent-4"
+                      @click="upgradeToPro"
+                    >
+                      {{ proBTN }}
                     </v-btn>
                   </v-card-actions>
                 </v-card>
@@ -80,6 +79,7 @@ export default {
   layout: 'DashboardLayout',
   data() {
     return {
+      userMembership: true,
       memberFree: [
         { description: 'enhance search result by reliability', can: true },
         { description: 'find video by using keyword', can: true },
@@ -103,10 +103,13 @@ export default {
     userEmail() {
       return this.user ? this.user.email : 'example@abcd.email'
     },
+    proBTN() {
+      return this.userMembership ? 'Currently Using it' : 'Upgrade to PRO'
+    },
   },
   mounted() {
     if (!this.$store.state.user) {
-      this.$router.push('/auth/login')
+      this.$router.push({ path: '/auth/login' })
     }
   },
   methods: {

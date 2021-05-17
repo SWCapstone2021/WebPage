@@ -79,10 +79,14 @@ export default {
       return this.user ? this.user.email : 'example@abcd.email'
     },
   },
-  mounted() {
-    // eslint-disable-next-line no-undef
-    IMP.init('imp92001067')
-    this.loadInicis()
+  watch: {
+    isIamPortLoaded(newState) {
+      if (this.isIamPortLoaded) {
+        // eslint-disable-next-line no-undef
+        IMP.init('imp92001067')
+        this.loadInicis()
+      }
+    },
   },
   methods: {
     loadInicis() {
