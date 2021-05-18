@@ -17,6 +17,7 @@
               >billing</nuxt-link
             >
           </p>
+          <p v-show="isModuleLoaded"></p>
           <p v-if="isEnd && !isSuccess" class="text-center">
             Subscription procedure failed. please retry.
           </p>
@@ -78,14 +79,13 @@ export default {
     userEmail() {
       return this.user ? this.user.email : 'example@abcd.email'
     },
-  },
-  watch: {
-    isIamPortLoaded(newState) {
-      if (this.isIamPortLoaded) {
+    isModuleLoaded() {
+      if (this.isIamPortLoaded && this.isJQueryLoaded) {
         // eslint-disable-next-line no-undef
         IMP.init('imp92001067')
         this.loadInicis()
       }
+      return false
     },
   },
   methods: {

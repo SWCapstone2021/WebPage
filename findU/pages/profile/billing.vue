@@ -8,7 +8,12 @@
             <v-col>
               <v-card elevation="0" outlined class="d-flex pa-2 align-center">
                 <v-card-text class="black--text">Payment Method</v-card-text>
-                <v-btn class="secondary" dark width="250"
+                <v-btn
+                  :disabled="isFree"
+                  class="secondary"
+                  dark
+                  width="250"
+                  @click="upgradeToPro"
                   >Update Payment Method</v-btn
                 >
               </v-card>
@@ -20,7 +25,7 @@
                 <v-card-text class="black--text"
                   >Change Subscription</v-card-text
                 >
-                <v-btn class="secondary" dark width="250" click="updateToFree"
+                <v-btn class="secondary" dark width="250" @click="updateToFree"
                   >Stop Subscription</v-btn
                 >
               </v-card>
@@ -92,6 +97,9 @@ export default {
     userID() {
       return this.user ? this.user.userId : '0'
     },
+    isFree() {
+      return this.userMembership === 'Free'
+    },
     paymentAmount() {
       return this.userMembership === 'PRO' ? '6$' : '0$'
     },
@@ -128,11 +136,48 @@ export default {
         })
     },
     updateToFree() {
-      const userRef = this.$fire.firestore.collection('user')
+      const prevThis = this
+      this.$dialog
+        .confirm({
+          text: 'Do you really stop subscription?',
+          title: 'Please confirm to continue',
+        })
+        .then(function (dialog) {
+          console.log(dialog)
+          if (dialog) {
+            const userRef = prevThis.$fire.firestore.collection('user')
 
-      userRef.doc(this.userEmail).set({
-        membership: 'Free',
-      })
+            userRef.doc(prevThis.userEmail).set({
+              membership: 'Free',
+            })
+            prevThis.userMembership = 'Free'
+          } else {
+            console.log('Clicked on cancel!')
+          }
+        })
+        .catch(function (error) {
+          console.log(error)
+          console.log('Clicked on cancel')
+        })
+    },
+    upgradeToPro() {
+      const prevThis = this
+      this.$dialog
+        .confirm({
+          text: 'This is FindU Agreement Statement',
+          title: 'Please confirm to continue',
+        })
+        .then(function (dialog) {
+          if (dialog) {
+            console.log('Clicked on proceed!')
+            prevThis.$router.push('/profile/purchase')
+          } else {
+            console.log('Clicked on cancel!')
+          }
+        })
+        .catch(function () {
+          console.log('Clicked on cancel')
+        })
     },
   },
 }
