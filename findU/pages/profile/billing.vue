@@ -7,27 +7,22 @@
           <v-row>
             <v-col>
               <v-card elevation="0" outlined class="d-flex pa-2 align-center">
-                <v-card-text class="black--text">Payment Method</v-card-text>
-                <v-btn
-                  :disabled="isFree"
-                  class="secondary"
-                  dark
-                  width="250"
-                  @click="upgradeToPro"
-                  >Update Payment Method</v-btn
-                >
-              </v-card>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col>
-              <v-card elevation="0" outlined class="d-flex pa-2 align-center">
                 <v-card-text class="black--text"
-                  >Change Subscription</v-card-text
+                  >Change Subscription Status</v-card-text
                 >
-                <v-btn class="secondary" dark width="250" @click="updateToFree"
-                  >Stop Subscription</v-btn
-                >
+                <v-dialog v-model="dialog" width="1000" height="800">
+                  <template #activator="{ on, attrs }">
+                    <v-btn
+                      class="secondary"
+                      dark
+                      width="250"
+                      v-bind="attrs"
+                      v-on="on"
+                      >Change Subscription</v-btn
+                    >
+                  </template>
+                  <payment></payment>
+                </v-dialog>
               </v-card>
             </v-col>
           </v-row>
@@ -38,7 +33,7 @@
               <v-row>
                 <v-col> FindU Subscription </v-col>
                 <v-col>
-                  <v-chip> {{ userMembership }} </v-chip>
+                  <v-chip> {{ membership }} </v-chip>
                 </v-col>
                 <v-spacer></v-spacer>
               </v-row>
@@ -73,16 +68,13 @@
 
 <script>
 import BaseSection from '@/components/base/Section'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Billing',
   components: { BaseSection },
   layout: 'DashboardLayout',
   data() {
-    return {
-      userMembership: 'Free',
-      lastOrderDate: 'Not Available',
-      nextOrderDate: 'Not Available',
-    }
+    return { dialog: false }
   },
   computed: {
     user() {
@@ -97,44 +89,12 @@ export default {
     userID() {
       return this.user ? this.user.userId : '0'
     },
-    isFree() {
-      return this.userMembership === 'Free'
-    },
     paymentAmount() {
-      return this.userMembership === 'PRO' ? '6$' : '0$'
+      return this.isPro ? '6$' : '0$'
     },
-  },
-  mounted() {
-    this.fetchMembership()
+    ...mapGetters(['isPro', 'membership', 'lastOrderDate', 'nextOrderDate']),
   },
   methods: {
-    fetchMembership() {
-      while (!this.user) {
-        console.log('un fetched yet')
-      }
-      const prevThis = this
-      const docRef = this.$fire.firestore.collection('user').doc(this.userEmail)
-      // eslint-disable-next-line vue/no-async-in-computed-properties
-      docRef
-        .get()
-        .then((doc) => {
-          if (doc.exists) {
-            console.log('Document data:', doc.data())
-            const data = doc.data()
-            prevThis.userMembership = data.membership
-            if (data.membership === 'PRO') {
-              prevThis.lastOrderDate = data.last_order
-              prevThis.nextOrderDate = data.next_order
-            }
-          } else {
-            // doc.data() will be undefined in this case
-            console.log('No such document!')
-          }
-        })
-        .catch((error) => {
-          console.log('Error getting document:', error)
-        })
-    },
     updateToFree() {
       const prevThis = this
       this.$dialog

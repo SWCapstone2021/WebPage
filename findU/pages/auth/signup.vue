@@ -98,8 +98,7 @@ export default {
       actionCodeSettings: {
         // URL you want to redirect back to. The domain (www.example.com) for this
         // URL must be in the authorized domains list in the Firebase Console.
-        url: 'http://localhost:3000/auth/redirect',
-        // url: 'https://apcfindu.web.app/auth/redirect',
+        url: this.$config.baseURL + '/auth/redirect',
         // This must be true.
         handleCodeInApp: true,
         dynamicLinkDomain: 'apcfindu.page.link',
@@ -137,7 +136,9 @@ export default {
             // ...
           })
           // eslint-disable-next-line node/handle-callback-err
-          .catch((error) => {})
+          .catch((error) => {
+            console.log('sign up link error', error)
+          })
       }
       return false
     },

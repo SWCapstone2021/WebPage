@@ -70,8 +70,8 @@
               min-width="164"
               class="font-weight-bold secondary rounded-pill"
               x-large
-              href="/profile/subscribe"
               rounded
+              @click="isUserLogin"
             >
               Buy Pro Now
 
@@ -96,8 +96,20 @@ export default {
       ['Advanced Searching Option', false, true],
       ['Video Summarization', false, true],
       ['Theme Customization', false, true],
-      ['Price', 'Free', '$5/month'],
+      ['Price', 'Free', '$1/month'],
     ],
   }),
+  methods: {
+    isUserLogin() {
+      if (
+        this.$store.state.user !== null &&
+        this.$store.state.user !== undefined
+      ) {
+        this.$route.push('/profile/subscribe')
+      } else {
+        alert('Login First')
+      }
+    },
+  },
 }
 </script>

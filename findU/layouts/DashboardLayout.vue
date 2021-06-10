@@ -9,6 +9,7 @@
             }}</v-avatar>
           </v-list-item-avatar>
           <v-list-item-title>{{ userName }}</v-list-item-title>
+          <v-list-item-subtitle v-if="isManager">Manager</v-list-item-subtitle>
         </v-list-item>
       </v-list>
       <v-divider></v-divider>
@@ -79,25 +80,43 @@ export default {
       { title: 'Click Me' },
       { title: 'Click Me 2' },
     ],
-    navItems: [
-      { text: 'Account', icon: 'mdi-account', to: '/profile/account' },
-      {
-        text: 'FindU Subscribe',
-        icon: 'mdi-youtube-subscription',
-        to: '/profile/subscribe',
-      },
-      {
-        text: 'FindU Billing',
-        icon: 'mdi-credit-card',
-        to: '/profile/billing',
-      },
-      { text: 'Home', icon: 'mdi-home', to: '/' },
-      { text: 'Sign Out', icon: 'mdi-logout', to: '/auth/signout' },
-    ],
   }),
   computed: {
     user() {
       return this.$store.state.user
+    },
+    navItems() {
+      let nav = [
+        { text: 'Account', icon: 'mdi-account', to: '/profile/account' },
+        {
+          text: 'FindU Subscribe',
+          icon: 'mdi-youtube-subscription',
+          to: '/profile/subscribe',
+        },
+        {
+          text: 'FindU Billing',
+          icon: 'mdi-credit-card',
+          to: '/profile/billing',
+        },
+        { text: 'Home', icon: 'mdi-home', to: '/' },
+        { text: 'Sign Out', icon: 'mdi-logout', to: '/auth/signout' },
+      ]
+      if (this.isManager) {
+        nav = nav.concat([
+          {
+            text: 'UserManage',
+            icon: 'mdi-account-supervisor',
+            to: '/profile/manager',
+          },
+          {
+            text: 'Dashboard',
+            icon: 'mdi-monitor-dashboard',
+            to: '/profile/dashboard',
+          },
+        ])
+        console.log(nav)
+      }
+      return nav
     },
     userNameCap() {
       if (this.userIsAuthenticated) {
@@ -108,6 +127,14 @@ export default {
     },
     userName() {
       return this.userIsAuthenticated ? this.user.displayName : 'APC'
+    },
+    isManager() {
+      return (
+        this.$store.state.userData !== null &&
+        this.$store.state.userData !== undefined &&
+        this.$store.state.userData.manager !== undefined &&
+        this.$store.state.userData.manager
+      )
     },
     userIsAuthenticated() {
       return this.user !== null && this.user !== undefined
@@ -124,6 +151,22 @@ export default {
     if (!this.userIsAuthenticated) {
       this.$router.push('/')
     }
+    const email = this.$fire.auth.currentUser.email
+    const docRef = this.$fire.firestore.collection('user').doc(email)
+    docRef
+      .get()
+      .then((doc) => {
+        // doc.data() will be undefined in this case
+        this.$fire.firestore
+          .collection('user')
+          .doc(email)
+          .onSnapshot((doc) => {
+            this.$store.commit('UPDATE_USER_DATA', doc.data())
+          })
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error.message)
+      })
   },
 }
 </script>

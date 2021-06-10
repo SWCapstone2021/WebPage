@@ -57,16 +57,31 @@
         </NuxtLink>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items
-        v-for="(item, i) in menuItems"
-        :key="i"
-        class="d-none d-sm-inline"
-      >
-        <v-btn text :to="item.to" nuxt>
-          <v-icon color="primary" left>{{ item.icon }}</v-icon>
-          {{ item.text }}
-        </v-btn>
-      </v-toolbar-items>
+      <ClientOnly>
+        <v-toolbar-items
+          v-for="(item, i) in menuItems"
+          :key="i"
+          class="d-none d-sm-inline"
+        >
+          <v-btn text :to="item.to" nuxt>
+            <v-icon color="primary" left>{{ item.icon }}</v-icon>
+            {{ item.text }}
+          </v-btn>
+        </v-toolbar-items>
+        <v-toolbar-items v-show="!userIsAuthenticated">
+          <v-dialog v-model="dialog" width="500">
+            <template #activator="{ on, attrs }">
+              <v-btn text v-bind="attrs" v-on="on">
+                <v-icon color="primary" left> mdi-login </v-icon>
+                Log in
+              </v-btn>
+            </template>
+            <v-card>
+              <firebaseui></firebaseui>
+            </v-card>
+          </v-dialog>
+        </v-toolbar-items>
+      </ClientOnly>
     </v-app-bar>
     <v-main>
       <v-container fluid class="ma-0 pa-0">
@@ -103,10 +118,13 @@
 </template>
 
 <script>
+import Firebaseui from '@/components/firebaseui'
 export default {
   name: 'SampleLayout',
+  components: { Firebaseui },
   data: () => ({
     sideNav: false,
+    dialog: false,
     footerItems: [
       'mdi-facebook',
       'mdi-twitter',
@@ -131,8 +149,8 @@ export default {
     menuItems() {
       let menuItems = [
         { text: 'Home', icon: 'mdi-home', to: '/' },
-        { text: 'Sign Up', icon: 'mdi-face', to: '/auth/signup' },
-        { text: 'Log In', icon: 'mdi-login', to: '/auth/login' },
+        // { text: 'Sign Up', icon: 'mdi-face', to: '/auth/signup' },
+        // { text: 'Log In', icon: 'mdi-login', to: '/auth/login' },
       ]
       if (this.userIsAuthenticated) {
         menuItems = [

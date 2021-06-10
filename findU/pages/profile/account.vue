@@ -23,7 +23,7 @@
               <v-row>
                 <v-col> FindU Subscription </v-col>
                 <v-col>
-                  <v-chip> {{ userMembership }} </v-chip>
+                  <v-chip> {{ membership }} </v-chip>
                 </v-col>
                 <v-spacer></v-spacer>
               </v-row>
@@ -63,15 +63,10 @@
                       </v-card-title>
 
                       <v-card-text>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        You agree with our term of service by sign in our web
+                        page. If you do not agree with us, please delete your
+                        account by clicking below red button yourself. We does
+                        not prepare details of our system yet.
                       </v-card-text>
 
                       <v-divider></v-divider>
@@ -147,6 +142,7 @@
 
 <script>
 import BaseSection from '@/components/base/Section'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Account',
   components: { BaseSection },
@@ -168,34 +164,9 @@ export default {
     userEmail() {
       return this.user ? this.user.email : 'example@abcd.email'
     },
-  },
-  mounted() {
-    this.fetchMembership()
+    ...mapGetters(['isPro', 'membership']),
   },
   methods: {
-    fetchMembership() {
-      while (!this.user) {
-        console.log('un fetched yet')
-      }
-      const prevThis = this
-      const docRef = this.$fire.firestore.collection('user').doc(this.userEmail)
-      // eslint-disable-next-line vue/no-async-in-computed-properties
-      docRef
-        .get()
-        .then((doc) => {
-          if (doc.exists) {
-            console.log('Document data:', doc.data())
-            const data = doc.data()
-            prevThis.userMembership = data.membership
-          } else {
-            // doc.data() will be undefined in this case
-            console.log('No such document!')
-          }
-        })
-        .catch((error) => {
-          console.log('Error getting document:', error)
-        })
-    },
     deleteUser() {
       this.dialog2 = false
       const user = this.$fire.auth.currentUser

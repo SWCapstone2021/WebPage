@@ -2,7 +2,7 @@
   <base-section id="theme-features" dark class="primary">
     <base-section-heading dark class="primary--text" title="Download">
       <a
-        href="https://chrome.google.com/webstore/category/extensions"
+        href="https://www.google.com/chrome/"
         class="white--text text-decoration-none"
       >
         Download Require to Install Chrome
@@ -18,7 +18,7 @@
         elevation="0"
         large
         target="_blank"
-        href="https://github.com/SWCapstone2021/chrome-extension/archive/refs/tags/v0.1.zip"
+        href="https://github.com/SWCapstone2021/chrome-extension/archive/refs/tags/v0.9.zip"
         class="secondary mx-auto mb-8"
         max-width="280"
       >

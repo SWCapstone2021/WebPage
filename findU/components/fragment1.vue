@@ -24,7 +24,7 @@
               <v-col cols="12" class="d-flex justify-start">
                 <v-btn
                   target="_blank"
-                  href="https://github.com/SWCapstone2021/chrome-extension/archive/refs/tags/v0.1.zip"
+                  href="https://github.com/SWCapstone2021/chrome-extension/archive/refs/tags/v0.9.zip"
                   elevation="0"
                   large
                   class="secondary"
@@ -38,7 +38,7 @@
         </v-col>
         <v-col cols="12" md="7" class="d-flex justify-center my-10">
           <v-img
-            :src="require('@/assets/sample gif.gif')"
+            :src="require('@/assets/main_ani.gif')"
             contain
             height="100%"
           ></v-img>

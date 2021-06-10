@@ -29,13 +29,14 @@
 
 <script>
 import BaseSection from '@/components/base/Section'
+
 export default {
   name: 'Purchase',
   components: { BaseSection },
   layout: 'DashboardLayout',
   data() {
     return {
-      isJQueryLoaded: false,
+      isJQueryLoaded: true,
       isIamPortLoaded: false,
       isEnd: false,
       isSuccess: false,
@@ -45,15 +46,6 @@ export default {
     return {
       title: 'Payment Page - My awesome project',
       script: [
-        {
-          hid: 'jsquery',
-          src: 'https://code.jquery.com/jquery-1.12.4.min.js',
-          defer: true,
-          // Changed after script load
-          callback: () => {
-            this.isJQueryLoaded = true
-          },
-        },
         {
           hid: 'import',
           src: 'https://cdn.iamport.kr/js/iamport.payment-1.1.8.js',
@@ -91,15 +83,15 @@ export default {
   methods: {
     loadInicis() {
       const prevThis = this
+      const newUID = this.getNewCustomerUID()
       // eslint-disable-next-line no-undef
       IMP.request_pay(
         {
-          pg: 'html5_inicis.INIBillTst', // 실제 계약 후에는 실제 상점아이디로 변경
           pay_method: 'card', // 'card'만 지원됩니다.
           merchant_uid: 'merchant_' + new Date().getTime(),
           name: '최초인증결제',
-          amount: 1, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다. (모바일에서는 가격이 표시되지 않음)
-          customer_uid: prevThis.userID, // customer_uid 파라메터가 있어야 빌링키 발급을 시도합니다.
+          amount: 0, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다. (모바일에서는 가격이 표시되지 않음)
+          customer_uid: newUID, // customer_uid 파라메터가 있어야 빌링키 발급을 시도합니다.
           buyer_email: prevThis.userEmail,
           buyer_name: prevThis.userName,
           buyer_tel: '02-1234-1234',
@@ -108,24 +100,17 @@ export default {
           if (rsp.success) {
             prevThis.isEnd = true
             prevThis.isSuccess = true
-            prevThis.updateMembership()
+            prevThis.updateMembership(newUID)
           } else {
             prevThis.isEnd = true
             prevThis.isSuccess = true
-            prevThis.updateMembership()
+            prevThis.updateMembership(newUID)
           }
         }
       )
     },
-    updateMembership() {
-      const prevThis = this
-      const userRef = this.$fire.firestore.collection('user')
-
-      userRef.doc(this.userEmail).set({
-        membership: 'PRO',
-        last_order: prevThis.getDate(0),
-        next_order: prevThis.getDate(6),
-      })
+    updateMembership(newUID = null) {
+      this.$fire.functions.httpsCallable('subscribe')({ newUID })
     },
     getDate(month) {
       const targetDate = new Date()
@@ -136,6 +121,9 @@ export default {
 
       const dateString = yyyy + '-' + mm + '-' + dd
       return dateString
+    },
+    getNewCustomerUID() {
+      return this.$store.state.user.email + '_' + new Date().getTime()
     },
   },
 }

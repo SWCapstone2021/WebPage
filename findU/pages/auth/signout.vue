@@ -30,7 +30,10 @@ export default {
         })
         .catch((error) => {
           console.log(error)
+          this.$router.push('/')
         })
+    } else {
+      this.$router.push('/')
     }
   },
 }

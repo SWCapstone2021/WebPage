@@ -20,10 +20,18 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: '~/plugins/jquery.client.js' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
+
+  // env
+  publicRuntimeConfig: {
+    baseURL:
+      process.env.NODE_ENV === 'production'
+        ? process.env.PRO_BASE_URL
+        : process.env.DEV_BASE_URL,
+  },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -76,8 +84,15 @@ export default {
           onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
           subscribeManually: false,
         },
+        emulatorPort: process.env.NODE_ENV === 'production' ? undefined : 9099,
       },
-      firestore: true,
+      firestore: {
+        emulatorPort: process.env.NODE_ENV === 'production' ? undefined : 8080,
+      },
+      functions: {
+        location: 'us-central1',
+        emulatorPort: process.env.NODE_ENV === 'production' ? undefined : 5001,
+      },
     },
   },
 

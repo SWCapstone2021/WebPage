@@ -10,8 +10,10 @@
               <v-col cols="12" md="6">
                 <v-hover v-slot="{ hover }">
                   <v-card
-                    :elevation="hover ? 12 : 2"
-                    :class="{ 'on-hover': hover }"
+                    :elevation="!isPro ? 12 : hover ? 12 : 2"
+                    :class="{
+                      'on-hover': !isPro ? true : hover,
+                    }"
                     class="mx-auto"
                   >
                     <v-img :src="require('@/assets/free.jpg')" height="200px">
@@ -37,8 +39,10 @@
               <v-col cols="12" md="6">
                 <v-hover v-slot="{ hover }">
                   <v-card
-                    :elevation="hover ? 12 : 2"
-                    :class="{ 'on-hover': hover }"
+                    :elevation="isPro ? 12 : hover ? 12 : 2"
+                    :class="{
+                      'on-hover': isPro ? true : hover,
+                    }"
                     class="mx-auto"
                   >
                     <v-img
@@ -62,7 +66,7 @@
                     <v-spacer></v-spacer>
                     <v-card-actions>
                       <v-btn
-                        :disabled="userMembership"
+                        :disabled="isPro"
                         text
                         color="teal accent-4"
                         @click="upgradeToPro"
@@ -82,6 +86,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import BaseSection from '@/components/base/Section'
 export default {
   name: 'Subscribe',
@@ -89,7 +94,6 @@ export default {
   layout: 'DashboardLayout',
   data() {
     return {
-      userMembership: true,
       memberFree: [
         { description: 'enhance search result by reliability', can: true },
         { description: 'find video by using keyword', can: true },
@@ -114,8 +118,9 @@ export default {
       return this.user ? this.user.email : 'example@abcd.email'
     },
     proBTN() {
-      return this.userMembership ? 'Currently Using it' : 'Upgrade to PRO'
+      return this.isPro ? 'Currently Using it' : 'Upgrade to PRO'
     },
+    ...mapGetters(['isPro']),
   },
   mounted() {
     if (!this.$store.state.user) {

@@ -15,5 +15,8 @@ export default {
   data() {
     return {}
   },
+  mounted() {
+    console.log('process', this.$config.baseURL)
+  },
 }
 </script>
