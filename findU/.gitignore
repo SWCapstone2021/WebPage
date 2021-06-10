@@ -1,6 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs
+credit
 /logs
 *.log
 npm-debug.log*
@@ -88,3 +89,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# env
+.runtimeconfig.json
