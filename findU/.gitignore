@@ -92,3 +92,4 @@ sw.*
 
 # env
 .runtimeconfig.json
+public/
