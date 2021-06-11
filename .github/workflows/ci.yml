@@ -22,7 +22,10 @@ jobs:
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@master
-
+      
+      - name: change dir
+        run: cd findU
+      
       - name: Setup node env 🏗
         uses: actions/setup-node@v2.1.2
         with:
