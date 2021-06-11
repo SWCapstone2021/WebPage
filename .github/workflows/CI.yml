@@ -1,5 +1,4 @@
-name: Deploy to Live Channel
-
+name: TEST on DEV
 on:
   push:
     branches:
@@ -14,19 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       # Add any build steps here. For example:
-      # - run: npm ci && npm run build
-      
-      - name: change directory 😀
-        run: cd findU
-      
-      - name: Install dependencies 👨🏻‍💻
-        run: npm ci
-
-      - name: Run linter 👀
-        run: npm run lint
-
-      - name: Run tests 🧪
-        run: npm run test
+      - run: cd findU
+      - run: npm ci 👨🏻‍💻
+      - run: npm run lint 👀
+      - run: npm run test 🧪
         
 #       - name: build 😛
 #         run: nuxt generate
