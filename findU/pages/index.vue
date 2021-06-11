@@ -18,5 +18,11 @@ export default {
   mounted() {
     console.log('process', this.$config.baseURL)
   },
+  created() {
+    this.mock()
+  },
+  methods: {
+    mock() {},
+  },
 }
 </script>

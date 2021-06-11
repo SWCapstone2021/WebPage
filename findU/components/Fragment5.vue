@@ -105,7 +105,7 @@ export default {
         this.$store.state.user !== null &&
         this.$store.state.user !== undefined
       ) {
-        this.$route.push('/profile/subscribe')
+        this.$router.push('/profile/subscribe')
       } else {
         alert('Login First')
       }

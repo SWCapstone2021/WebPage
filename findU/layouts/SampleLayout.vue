@@ -71,13 +71,17 @@
         <v-toolbar-items v-show="!userIsAuthenticated">
           <v-dialog v-model="dialog" width="500">
             <template #activator="{ on, attrs }">
-              <v-btn text v-bind="attrs" v-on="on">
+              <v-btn text v-bind="attrs" v-on="on" @click="changeTitle(0)">
                 <v-icon color="primary" left> mdi-login </v-icon>
                 Log in
               </v-btn>
+              <v-btn text v-bind="attrs" v-on="on" @click="changeTitle(1)">
+                <v-icon color="primary" left> mdi-face </v-icon>
+                Sign up
+              </v-btn>
             </template>
             <v-card>
-              <firebaseui></firebaseui>
+              <firebaseui :title="title"></firebaseui>
             </v-card>
           </v-dialog>
         </v-toolbar-items>
@@ -118,6 +122,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import Firebaseui from '@/components/firebaseui'
 export default {
   name: 'SampleLayout',
@@ -138,6 +143,7 @@ export default {
       { title: 'Click Me' },
       { title: 'Click Me 2' },
     ],
+    title: '',
   }),
   computed: {
     user() {
@@ -161,6 +167,15 @@ export default {
       }
       return menuItems
     },
+  },
+  created() {
+    this.UPDATE_USER({})
+  },
+  methods: {
+    changeTitle(idx) {
+      this.title = idx === 0 ? 'Login' : 'Signup'
+    },
+    ...mapMutations(['UPDATE_USER']),
   },
 }
 </script>

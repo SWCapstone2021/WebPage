@@ -67,7 +67,11 @@
         </template>
 
         <template #item.membership="{ item }">
-          <v-chip :color="getColor(item.membership)" dark>
+          <v-chip
+            :color="getColor(item.membership)"
+            dark
+            @click="changeMembership(item)"
+          >
             {{ item.membership }}
           </v-chip>
         </template>
@@ -202,6 +206,14 @@ export default {
     this.getUserData()
   },
   methods: {
+    changeMembership(item) {
+      this.$fire.firestore
+        .collection('user')
+        .doc(item.email)
+        .update({
+          membership: item.membership === 'FREE' ? 'PRO' : 'FREE',
+        })
+    },
     flipManager(item) {
       this.$fire.firestore.collection('user').doc(item.email).update({
         manager: item.manager,
@@ -216,8 +228,12 @@ export default {
         querySnapshot.forEach((doc) => {
           const item = doc.data()
           item.email = doc.id
-          item.created = this.getDate(item.creationTime)
+          item.created = item.creationTime.includes('-')
+            ? item.creationTime
+            : this.getDate(item.creationTime)
+          console.log(item.creationTime)
           userData.push(item)
+          console.log(item)
         })
         this.userData = userData
       })

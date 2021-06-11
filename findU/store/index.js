@@ -32,6 +32,9 @@ export const mutations = {
     console.log(userData)
     state.userData = userData
   },
+  UPDATE_USER: (state, user) => {
+    state.user = user
+  },
 }
 
 export const getters = {

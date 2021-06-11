@@ -37,11 +37,7 @@
           </v-container>
         </v-col>
         <v-col cols="12" md="7" class="d-flex justify-center my-10">
-          <v-img
-            :src="require('@/assets/main_ani.gif')"
-            contain
-            height="100%"
-          ></v-img>
+          <v-img src="/main_ani.gif" contain height="100%"></v-img>
         </v-col>
       </v-row>
     </v-container>

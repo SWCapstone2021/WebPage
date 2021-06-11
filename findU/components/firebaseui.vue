@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1 class="text-center">Welcome to FindU</h1>
+    <h1 class="text-center">{{ title }}</h1>
     <div id="firebaseui-auth-container"></div>
     <div id="loader">Loading...</div>
   </v-container>
@@ -11,6 +11,12 @@ import 'firebaseui/dist/firebaseui.css'
 
 export default {
   name: 'Firebaseui',
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+  },
   mounted() {
     const firebaseui = require('firebaseui')
     let ui = firebaseui.auth.AuthUI.getInstance()
