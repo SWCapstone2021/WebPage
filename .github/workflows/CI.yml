@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       # Add any build steps here. For example:
-      - run: cd ~/work/WebPage/findU
+      - run: cd ./findU
       - run: npm ci 👨🏻‍💻
       - run: npm run lint 👀
       - run: npm run test 🧪
