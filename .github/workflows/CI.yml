@@ -28,12 +28,12 @@ jobs:
       - name: Run tests 🧪
         run: npm run test
         
-      - name: build 😛
-        run: nuxt generate
+#       - name: build 😛
+#         run: nuxt generate
           
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
-          projectId: your-Firebase-project-ID
-          channelId: live
+#       - uses: FirebaseExtended/action-hosting-deploy@v0
+#         with:
+#           repoToken: "${{ secrets.GITHUB_TOKEN }}"
+#           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+#           projectId: your-Firebase-project-ID
+#           channelId: live
