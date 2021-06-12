@@ -105,3 +105,6 @@ dist
 
 /references
 .idea/
+
+.cache
+.firebase/
