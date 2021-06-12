@@ -2,7 +2,6 @@ name: Deploy
 on:
   push:
     branches:
-      - dev
       - main
     # Optionally configure to run only for specific files. For example:
     # paths:
