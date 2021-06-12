@@ -1,0 +1,31 @@
+name: Test dev branch
+on:
+  push:
+    branches:
+      - dev
+      - master
+    # Optionally configure to run only for specific files. For example:
+    # paths:
+    # - "website/**"
+
+jobs:
+  VuejsTest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - working-directory: ./findU
+        run: |
+          npm ci
+          npm run test
+          
+      - name: Archive test results 😉
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-report
+          path: output/test/test-report.html
+            
+      - name: Archive code coverage results 😛
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: output/coverage/
