@@ -1,0 +1,28 @@
+name: TEST on DEV
+on:
+  push:
+    branches:
+      - dev
+    # Optionally configure to run only for specific files. For example:
+    # paths:
+    # - "website/**"
+
+jobs:
+  deploy_live_website:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - working-directory: ./findU
+        run: |
+          npm ci
+          npm run test
+      
+#       - name: build 😛
+#         run: nuxt generate
+          
+#       - uses: FirebaseExtended/action-hosting-deploy@v0
+#         with:
+#           repoToken: "${{ secrets.GITHUB_TOKEN }}"
+#           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+#           projectId: your-Firebase-project-ID
+#           channelId: live
