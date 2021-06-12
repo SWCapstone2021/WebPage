@@ -122,7 +122,6 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
 import Firebaseui from '@/components/firebaseui'
 export default {
   name: 'SampleLayout',
@@ -168,14 +167,10 @@ export default {
       return menuItems
     },
   },
-  created() {
-    this.UPDATE_USER({})
-  },
   methods: {
     changeTitle(idx) {
       this.title = idx === 0 ? 'Login' : 'Signup'
     },
-    ...mapMutations(['UPDATE_USER']),
   },
 }
 </script>

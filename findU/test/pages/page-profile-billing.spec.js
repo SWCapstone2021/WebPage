@@ -1,8 +1,7 @@
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
-import Vue from 'vue'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify'
-import Billing from '../../pages/profile/Billing'
+import Billing from '../../pages/profile/billing'
 
 const localVue = createLocalVue()
 
