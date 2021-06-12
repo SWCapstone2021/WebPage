@@ -51,8 +51,8 @@
 
 ## Tutorial
 
-1. 크롬 익스텐션에서 앱을 다운로드 받는다. [다운로드 링크](https://www.google.com)
-2. 찾아봐유 크롬 익스텐션을 실행 후 로그인 한다. 
+1. 크롬 익스텐션에서 앱을 다운로드 받는다. [다운로드 링크](https://github.com/SWCapstone2021/chrome-extension/archive/refs/tags/v0.9.zip)
+2. 찾아봐유 크롬 익스텐션을 실행 후 [로그인](https://apcfindu.web.app/) 한다. 
 3. [유튜브](https://www.youtube.com) 에서 동영상을 검색 한다.
 4. 시청할 동영상을 선택한다.
 5. 동영상을 즐겁게 감상 한다.
