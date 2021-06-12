@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v2
       - working-directory: ./findU
         run: |
-          npm ci && npm generate
+          npm ci && nuxt generate
           
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
