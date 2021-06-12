@@ -1,4 +1,4 @@
-name: DEV TEST
+name: Test dev branch
 on:
   push:
     branches:
@@ -16,6 +16,7 @@ jobs:
         run: |
           npm ci
           npm run test
+          
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
