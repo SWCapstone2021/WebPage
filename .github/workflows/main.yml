@@ -39,6 +39,11 @@ jobs:
       - working-directory: ./findU
         run: |
           npm ci && npm run generate
+      
+      - name: install firebase function modules
+        working-directory: ./findU/functions
+        run: |
+          npm install
           
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
