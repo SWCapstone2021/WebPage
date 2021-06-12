@@ -5,7 +5,7 @@
 
 해당 레포는 찾아봐유의 크롬 익스텐션 소스코드를 저장하고 있습니다. 
 
-[![TEST on DEV](https://github.com/SWCapstone2021/WebPage/actions/workflows/CI.yml/badge.svg?branch=dev)](https://github.com/SWCapstone2021/WebPage/actions/workflows/CI.yml)
+[![TEST](https://github.com/SWCapstone2021/WebPage/actions/workflows/main.yml/badge.svg)](https://github.com/SWCapstone2021/WebPage/actions/workflows/main.yml)
 
 
 
