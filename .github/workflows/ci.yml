@@ -17,17 +17,17 @@ jobs:
           npm ci
           npm run test
           
-      - name: Archive production artifacts
+      - name: Archive test results 😉
         uses: actions/upload-artifact@v2
         with:
-          name: dist-without-markdown
-          path: |
-            output/artifacts/
-      - name: Archive code coverage results
+          name: test-report
+          path: output/test/test-report.html
+            
+      - name: Archive code coverage results 😛
         uses: actions/upload-artifact@v2
         with:
           name: code-coverage-report
-          path: output/test/code-coverage.html
+          path: output/coverage/
       
 #       - name: build 😛
 #         run: nuxt generate
