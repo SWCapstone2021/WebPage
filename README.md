@@ -11,6 +11,9 @@
     <a href="https://github.com/SWCapstone2021/WebPage/actions/workflows/dev.yml">
         <img src="https://github.com/SWCapstone2021/WebPage/actions/workflows/dev.yml/badge.svg"/>
     </a>
+    <a href="https://github.com/SWCapstone2021/WebPage/actions/workflows/preview.yml">
+        <img src="https://github.com/SWCapstone2021/WebPage/actions/workflows/preview.yml/badge.svg"/>
+    </a>	
     <a href="https://github.com/SWCapstone2021/WebPage/issues">
         <img src="https://img.shields.io/github/issues/SWCapstone2021/WebPage"/>
     </a>
@@ -23,7 +26,7 @@
     <a href="https://github.com/SWCapstone2021/WebPage/blob/main/LICENSE">
         <img src="https://img.shields.io/github/license/SWCapstone2021/WebPage"/>
     </a> <br/>
-    <img src="https://img.shields.io/badge/Nuxt.js-00C58E?style=flat-square&logo=Nuxt-dot-js&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Nuxt.js-00C58E?style=flat-square&logo=nuxt.js&logoColor=white"/>
     <img src="https://img.shields.io/badge/Built with Firebase-FFCA28?style=flat-square&logo=Firebase&logoColor=white"/>
     <img src="https://img.shields.io/badge/Vue-4FC08D?style=flat-square&logo=Vue-dot-js&logoColor=white"/>
     <img src="https://img.shields.io/badge/Vuetify-1867C0?style=flat-square&logo=Vuetify&logoColor=white"/>
@@ -39,7 +42,7 @@
 <p align="center">
     이 프로젝트는 2021 Ajou University Spring SW capston design 과목의 일환으로 진행되었습니다. <br/>
     이 어플리케이션은 상업적인 목적이 포함되어 있지 않습니다. 
-    이 프로젝트는 팀 APC에 의해서 공동 개발되었습니다.<br/>
+    이 프로젝트는 팀 APC에 의해 개발되었습니다.<br/>
     해당 레포는 찾아봐유의 홈페이지 소스코드를 저장하고 있습니다.     
 </p>
 
