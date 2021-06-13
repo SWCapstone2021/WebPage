@@ -26,7 +26,7 @@
     <a href="https://github.com/SWCapstone2021/WebPage/blob/main/LICENSE">
         <img src="https://img.shields.io/github/license/SWCapstone2021/WebPage"/>
     </a> <br/>
-    <img src="https://img.shields.io/badge/Nuxt.js-00C58E?style=flat-square&logo=Nuxt-dot-js&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Nuxt.js-00C58E?style=flat-square&logo=nuxt.js&logoColor=white"/>
     <img src="https://img.shields.io/badge/Built with Firebase-FFCA28?style=flat-square&logo=Firebase&logoColor=white"/>
     <img src="https://img.shields.io/badge/Vue-4FC08D?style=flat-square&logo=Vue-dot-js&logoColor=white"/>
     <img src="https://img.shields.io/badge/Vuetify-1867C0?style=flat-square&logo=Vuetify&logoColor=white"/>
