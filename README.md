@@ -35,8 +35,8 @@
   <a href="#tutorial">Tutorial</a></a> • 
   <a href="#homepage">Homepage</a> •  
   <a href="#features">Features</a> •  
-  <a href="#system-structures">System Structures</a> • 
-  <a href="#contributors">Contributors</a> • 
+  <a href="#system-structure">System Structures</a> • 
+  <a href="#contributor">Contributors</a> • 
   <a href="#license">License</a>
 </p>
 <p align="center">
