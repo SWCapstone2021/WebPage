@@ -9,10 +9,10 @@
         <img src="https://github.com/SWCapstone2021/WebPage/actions/workflows/mian.yml/badge.svg"/>
     </a> 
     <a href="https://github.com/SWCapstone2021/WebPage/actions/workflows/dev.yml">
-        <img src="https://github.com/SWCapstone2021/WebPage/actions/workflows/dev.yml/badge.svg"/>
+        <img src="https://github.com/SWCapstone2021/WebPage/actions/workflows/dev.yml/badge.svg?branch=dev"/>
     </a>
     <a href="https://github.com/SWCapstone2021/WebPage/actions/workflows/preview.yml">
-        <img src="https://github.com/SWCapstone2021/WebPage/actions/workflows/preview.yml/badge.svg"/>
+        <img src="https://github.com/SWCapstone2021/WebPage/actions/workflows/preview.yml/badge.svg?branch=dev"/>
     </a>	
     <a href="https://github.com/SWCapstone2021/WebPage/issues">
         <img src="https://img.shields.io/github/issues/SWCapstone2021/WebPage"/>
