@@ -33,8 +33,8 @@
 </p>
 <p align="center">
   <a href="#tutorial">Tutorial</a></a> • 
-  <a href="#homepage">Homepage</a> •  
-  <a href="#features">Features</a> •  
+  <a href="#homepage-feature">Homepage Features</a> •  
+  <a href="#findu-feature">FindU Features</a> •  
   <a href="#system-structure">System Structures</a> • 
   <a href="#contributor">Contributors</a> • 
   <a href="#license">License</a>
@@ -64,18 +64,26 @@
 
 
 
-## Homepage
+## Homepage Feature
 
 홈페이지에서는 다음과 같은 기능을 제공 합니다.
 
 - [x] 프로젝트 소개
 - [x] 시스템 이용을 위한 가입 및 구독
 - [x] 사용자 정보 관리 
-- [x] 프로젝트 관리
+- [x] 결제 정보 관리
+
+<p align="center">
+    <h5>1. 프로젝트 소개 및 구독</h5>
+    <img src="https://user-images.githubusercontent.com/31476895/121795908-e0be9080-cc4f-11eb-80b3-4815985db104.gif"/>
+	<h5>2. 결제 방법 관리</h5>
+    <img src="https://user-images.githubusercontent.com/31476895/121795907-df8d6380-cc4f-11eb-9579-b706084d63f0.gif"/>
+	<h5>3. 유저 관리</h5>
+    <img src="https://user-images.githubusercontent.com/31476895/121795909-e1572700-cc4f-11eb-87ca-890aa563625f.gif"/>
+</p>
 
 
-
-## Features
+## FindU Feature
 
 <p align="center">
     <h5>1. CTRL+F 기능</h5>
