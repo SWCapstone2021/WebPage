@@ -36,6 +36,14 @@ jobs:
       - working-directory: ./findU
         run: |
           npm ci && npm run generate
+        env:
+          apiKey: ${{ secrets.APIKEY }}
+          authDomain: ${{ secrets.AUTHDOMAIN }}
+          projectId: ${{ secrets.PROJECTID }}
+          storageBucket: ${{ secrets.STORAGEBUCKET }}
+          messagingSenderId: ${{ secrets.MESSAGINGSENDERID }}
+          appId: ${{ secrets.APPID }}
+          measurementId: ${{ secrets.MEASUREMENTID }}
 
       - name: install firebase function modules
         working-directory: ./findU/functions
